@@ -3,7 +3,9 @@
   "description": "Clean Architecture PHP project",
   "type": "project",
   "require": {
-    "php": "^8.3"
+    "php": "^8.3",
+    "guzzlehttp/psr7": "^3.0",
+    "spipu/html2pdf": "^5.3"
   },
   "autoload": {
     "psr-4": {
