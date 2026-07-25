@@ -30,4 +30,6 @@ $request = (new ServerRequest('GET', 'http://localhost:8000/'))
 $response = new Response();
 $presentation = new ExportRegistrationPresenter();
 $exportRegistrationController = new ExportRegistrationController($request, $response, $exportRegistration, $presentation);
-echo $exportRegistrationController->handle();
+
+$response = $exportRegistrationController->handle();
+echo $response->getBody();

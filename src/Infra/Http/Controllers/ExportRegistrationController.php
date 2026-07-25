@@ -26,7 +26,7 @@ class ExportRegistrationController
         $this->presentation = $presentation;
     }
 
-    public function handle(): string
+    public function handle(): Response
     {
         $query = $this->request->getQueryParams();
 
@@ -37,12 +37,14 @@ class ExportRegistrationController
         );
         $outputBoundary = $this->usecase->handle($inputBoundary);
 
-        return $this->presentation->output([
+        $this->response->getBody()->write($this->presentation->output([
             'status' => 'success',
             'message' => 'Registration exported successfully',
             'data' => [
                 'fullFileName' => $outputBoundary->getFullFileName(),
             ],
-        ]);
+        ]));
+
+        return $this->response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 }
